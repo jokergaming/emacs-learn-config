@@ -16,6 +16,8 @@
 (require 'init-elpa) ;; 包配置，镜像源配置
 (require 'init-ui) ;; ui配置
 (require 'init-package) ;; 包管理
+(require 'awesome-pair) ;; 括号匹配插件
+(require 'init-pairconfig)
 
 ;; 加载custom配置
 (when (file-exists-p custom-file)
