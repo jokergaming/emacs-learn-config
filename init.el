@@ -1,7 +1,27 @@
+;;; init.el --- 加载所有配置的顶层模块
+;;; Commentary:
+
+;; this file bootstrap the configuration, which is devided into
+;; a number of other files.
+
+;;; Code:
+
+;; 调试用
+(setq debug-on-error t)
+
+;; 测试版本
+(let ((minver "25.1"))
+  (when (version< emacs-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+(when (version< emacs-version "26.1")
+  (message "Your emacs is old, try to upgrade"))
+
+
 ;; load-path是emacs引入模块的搜索路径, 把文件加进去emacs会去找
 ;; expand-file-name导入文件和文件夹，concat是拼接，最终会是.emacs.d/lisp下所有文件
 (add-to-list 'load-path
              (expand-file-name (concat user-emacs-directory "lisp")))
+
 
 
 ;; 设置图形界面或者内部配置文件的存放位置，避免污染init.el
