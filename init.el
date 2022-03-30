@@ -26,9 +26,14 @@
 
 ;; 设置图形界面或者内部配置文件的存放位置，避免污染init.el
 ;; 注意此时并未加载，后续需要load才生效
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+;; 方法1
+;; (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+;; 方法2
+(setq custom-file (locate-user-emacs-file "custom.el"))
 
 
+
+;; bootstrap configs
 ;; 导入顺序很重要
 (require 'init-const) ;; 常量
 (require 'init-kbd) ;; 快捷键
