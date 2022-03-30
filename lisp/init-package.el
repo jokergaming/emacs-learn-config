@@ -115,18 +115,34 @@
   
   :hook ((lsp-mode . lsp-enable-which-key-integration)
 	 (python-mode . lsp-deferred)
+	 (haskell-mode . lsp-deferred)
 	 (html-mode   . lsp-deferred))
   :commands (lsp lsp-deferred)
   :init (setq lsp-prefer-flymake nil ;; not use flymake instead flycheck
 	      lsp-keep-workspace-alive nil ;; auto kill lsp server
-	      lsp-enable-indentation nil
+	      lsp-enable-indentation t
 	      lsp-enable-on-type-formatting nil
-	      lsp-auto-guess-root nil
+	      lsp-auto-guess-root t
+	      lsp-auto-configure t
 	      lsp-enable-snippet t)
   :config
   (use-package lsp-clients
     :ensure nil
     :functions (lsp-format-buffer lsp-organize-imports)))
+
+(use-package lsp-ui
+  :after (lsp-mode)
+  :commands (lsp-ui-mode)
+  :bind
+  (:map lsp-ui-mode-map
+	([remap xref-find-references] . lsp-ui-peek-find-references)
+	([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+	("C-c u" . lsp-ui-imenu))
+  :hook (lsp-mode . lsp-ui-mode)
+  :init
+  (setq lsp-enable-symbol-highlighting t
+	lsp-ui-doc-enable t
+	lsp-lens-enable t))
 
 
 
