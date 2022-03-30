@@ -2,4 +2,5 @@ auto-save-list/
 elpa/
 custom.el
 .lsp*
+recentf
 recentf*

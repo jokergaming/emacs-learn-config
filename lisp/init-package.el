@@ -129,6 +129,22 @@
     :functions (lsp-format-buffer lsp-organize-imports)))
 
 
+
+;; paredit设置-- 用于lisp语言家族
+
+(use-package paredit
+  :ensure t
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+  (add-hook 'lisp-interaction-mode-hook #'paredit-mode)
+  (add-hook 'ielm-mode-hook #'paredit-mode)
+  (add-hook 'lisp-mode-hook #'paredit-mode)
+  (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode)
+  ;; (diminish 'paredit-mode "()")
+  )
+
+
+
 ;; 重启emacs的包
 (use-package restart-emacs)
 
