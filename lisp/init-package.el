@@ -143,6 +143,47 @@
   ;; (diminish 'paredit-mode "()")
   )
 
+;; modeline显示按键和命令
+(use-package keycast
+  :init
+  (add-to-list 'global-mode-string '("" mode-line-keycast))
+  (keycast-mode))
+
+;; 增强minibuffer补全
+(use-package vertico
+  :init
+  (vertico-mode))
+
+(define-key vertico-map "?" #'minibuffer-completion-help)
+(define-key vertico-map (kbd "M-RET") #'minibuffer-force-complete-and-exit)
+(define-key vertico-map (kbd "M-TAB") #'minibuffer-complete)
+
+
+;; 无序补全
+(use-package orderless
+  :init
+  (setq completion-styles '(substring orderless)
+	completion-category-defaults nil
+	completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
+
+(use-package emacs
+  :init
+  (defun crm-indicator (args)
+    (cons (concat "[CRM] " (car args)) (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+  
+  (setq minibuffer-prompt-properties
+	'(read-only t cursor-intangible t face minibuffer-prompt))
+  
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  
+  (setq enable-recursive-minibuffers t))
+
 
 
 ;; 重启emacs的包

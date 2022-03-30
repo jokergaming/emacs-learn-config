@@ -16,15 +16,22 @@
 ;; 禁止autosave文件
 (setq auto-save-default nil)
 
+;; 自动加载外部修改过的文件
+(global-auto-revert-mode 1)
+
+;; 关闭警告声
+(setq ring-bell-function 'ignore)
+
 ;; 禁止生成#开头的文件(lock file)
 ;; (setq create-lockfiles nil)
 
 ;; 开启服务器模式，可以直接Windows右键打开
-(server-mode 1)
+;; (server-mode 1)
 
 ;; 鼠标滚动优化
 (setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
+
 
 ;; 正数开，负数和0关
 (menu-bar-mode -1)
