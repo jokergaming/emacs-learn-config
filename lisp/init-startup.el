@@ -9,6 +9,23 @@
 ;; 设置为最大值
 (setq gc-cons-threhold most-positive-fixnum)
 
+
+;; 不备份
+(setq make-backup-files nil)
+
+;; 禁止autosave文件
+(setq auto-save-default nil)
+
+;; 禁止生成#开头的文件(lock file)
+;; (setq create-lockfiles nil)
+
+;; 开启服务器模式，可以直接Windows右键打开
+(server-mode 1)
+
+;; 鼠标滚动优化
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-progressive-speed nil)
+
 ;; 正数开，负数和0关
 (menu-bar-mode -1)
 
